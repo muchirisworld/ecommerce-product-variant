@@ -167,16 +167,16 @@ export function VariantManager({ product, initialVariants }: { product: Product,
                                                         <Input
                                                             type="number"
                                                             step="0.01"
-                                                            value={variant.price / 100} // Assuming internal state is cents for variants but manager might handle display
-                                                            onChange={(e) => handleInputChange(variant.id, 'price', e.target.value)}
+                                                            value={isNaN(variant.price) ? "" : variant.price / 100}
+                                                            onChange={(e) => handleInputChange(variant.id, 'price', e.target.value === "" ? NaN : parseFloat(e.target.value) * 100)}
                                                             className="h-8 border-none bg-transparent focus-visible:ring-1 hover:bg-muted/50 transition-colors"
                                                         />
                                                     </TableCell>
                                                     <TableCell>
                                                         <Input
                                                             type="number"
-                                                            value={variant.stock}
-                                                            onChange={(e) => handleInputChange(variant.id, 'stock', e.target.value)}
+                                                            value={isNaN(variant.stock) ? "" : variant.stock}
+                                                            onChange={(e) => handleInputChange(variant.id, 'stock', e.target.value === "" ? NaN : parseInt(e.target.value))}
                                                             className="h-8 border-none bg-transparent focus-visible:ring-1 hover:bg-muted/50 transition-colors"
                                                         />
                                                     </TableCell>

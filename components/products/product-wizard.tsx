@@ -203,11 +203,11 @@ export function ProductWizard() {
                         <div className="grid grid-cols-2 gap-4">
                             <div className="space-y-2">
                                 <Label htmlFor="price">Base Price ($)</Label>
-                                <Input id="price" type="number" step="0.01" value={basePrice} onChange={(e) => setBasePrice(parseFloat(e.target.value))} />
+                                <Input id="price" type="number" step="0.01" value={isNaN(basePrice) ? "" : basePrice} onChange={(e) => setBasePrice(e.target.value === "" ? NaN : parseFloat(e.target.value))} />
                             </div>
                             <div className="space-y-2">
                                 <Label htmlFor="stock">Base Stock</Label>
-                                <Input id="stock" type="number" value={baseStock} onChange={(e) => setBaseStock(parseInt(e.target.value))} />
+                                <Input id="stock" type="number" value={isNaN(baseStock) ? "" : baseStock} onChange={(e) => setBaseStock(e.target.value === "" ? NaN : parseInt(e.target.value))} />
                             </div>
                         </div>
                     </CardContent>
